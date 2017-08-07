@@ -9,16 +9,25 @@ function wikiSearch(term) {
         success: function(data, status, JqXHR) {
             console.log(data);
             $('#content').html('');
+            $('#content').css({
+                'width': '0%'
+            })
+            $('#content').hide();
+
             for (let i = 0; i <= data[1].length - 1; i++) {
                 $('#content').append(`
                     <div class="group">
-                    <div class="rtitle">${data[1][i]}</div>
+                    <h4 class="rtitle">${data[1][i]}</h4>
                     <div class="rcontent">${data[2][i]}</div>
                     <a href="${data[3][i]}" class="goTobtn">Go to Article Page</a>
                     </div>
                     
                 `);
             }
+            $('#content').show();
+            $('#content').animate({
+                width: '60%'
+            })
         }
     });
 }
